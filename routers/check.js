@@ -11,18 +11,15 @@ router.post("/login", async (req, res) => {
     // return true if admins namne and password is valid
     const validAdminName = await Admin.findOne({ name: req.body.name });
 
-    if (!validAdminName) {
-      res.status(400).json("Fel anvädarnamn eller lösenord!");
-    }
+    !validAdminName && res.status(400).json("Fel anvädarnamn eller lösenord!");
 
     // Check password
     const validAdminPass = await bcrypt.compareSync(
       req.body.password,
       validAdminName.password
     );
-    if (!validAdminPass) {
-      res.status(400).json("Fel anvädarnamn eller lösenord!");
-    }
+    !validAdminPass && res.status(400).json("Fel anvädarnamn eller lösenord!");
+
     // Send all data but not password
     const theAdmin = await Admin.findOne({ name: req.body.name }).select(
       "-password"

@@ -29,16 +29,16 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// //  GET ALL ITEMS
-// router.get("/", async (req, res) => {
-//   try {
-//     // Get alla info about user but not password
-//     const theItems = await Item.find();
-//     res.status(200).json(theItems);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+//  GET ALL ITEMS
+router.get("/", async (req, res) => {
+  try {
+    // Get alla info about user but not password
+    const theItems = await Item.find();
+    res.status(200).json(theItems);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 // UPDATE AN ITEM
 router.put("/:id", async (req, res) => {

@@ -10,14 +10,9 @@ const check = require("./routers/check");
 const admin = require("./routers/admin");
 const items = require("./routers/items");
 
-
-
 /**------------------------
  *      DEPLOY SETTIING
  *------------------------*/
-
-
-
 
 /**------------------------
  *      CONFIG
@@ -25,7 +20,10 @@ const items = require("./routers/items");
 // Get access controll to server/API
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,OPTIONS,POST,PUT,DELETE"
+  );
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
@@ -39,12 +37,6 @@ dotenv.config();
 
 // Make it possible to send JSON by body
 app.use(express.json());
-
-// Connect to databse
-mongoose
-  .connect(process.env.DATABS_URL)
-  .then(console.log("Databas är kopplad"))
-  .catch((err) => console.log(err));
 
 // FILE UPLOADER
 const fileStoragGenerator = multer.diskStorage({
@@ -62,20 +54,29 @@ const fileStoragGenerator = multer.diskStorage({
 const fileUploader = multer({ storage: fileStoragGenerator });
 
 // Call file uploader to save just a SINGLE  ifle
-app.post("/server/file", fileUploader.single("file"), (req, res) => {
+app.post("/file", fileUploader.single("file"), (req, res) => {
   res.status(200).json("Upload!");
 });
 
 // USE ROUTERS
-app.use("/server/check", check);
-app.use("/server/admin", admin);
-app.use("/server/items", items);
+app.use("/check", check);
+app.use("/admin", admin);
+app.use("/items", items);
 
 // App Index
-app.get('/', (req, res)=>{
-  res.send('Boplats!')
-})
-
-app.listen(process.env.PORT || "3000", () => {
-  console.log("Back end körs!");
+app.get("/", (req, res) => {
+  res.send("Boplats!!");
 });
+
+const PORT = process.env.PORT || 3001;
+
+// Connect to databse
+mongoose
+  .connect(process.env.DATABS_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => app.listen(PORT, () => console.log(`Server kör i ${PORT}`)))
+  .catch((err) => console.log(err));
+
+  

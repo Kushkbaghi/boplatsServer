@@ -33,18 +33,6 @@ const ItemsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    buildDate: {
-      type: String,
-      required: false,
-    },
-    lastDay: {
-      type: Date,
-      required: false,
-    },
-    moveDate: {
-      type: Date,
-      required: false,
-    },
     image: {
       type: String,
       required: false,

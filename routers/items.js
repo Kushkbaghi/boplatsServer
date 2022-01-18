@@ -42,22 +42,22 @@ router.get("/", async (req, res) => {
 
 // UPDATE AN ITEM
 router.put("/:id", async (req, res) => {
-  const formId = req.body.itemId;
-  const parameterId = req.params.id;
   try {
+    const formId = req.body.itemId;
+    const parameterId = req.params.id;
     // if URL id/parameter is same as body/form input
     //if (formId === parameterId) {
-      // If there is any password data from form/body update password
+    // If there is any password data from form/body update password
 
-      // Update the item with body data
-      const updateItemsAccont = await Item.findByIdAndUpdate(parameterId, {
-        $set: req.body,
-      });
-      // Send if it's successful
-      res.status(200).json("Item har updaterats");
+    // Update the item with body data
+    const updateItemsAccont = await Item.findByIdAndUpdate(parameterId, {
+      $set: req.body,
+    });
+    // Send if it's successful
+    res.status(200).json("Item har updaterats");
     //} else {
-      // Send Unauthorized error
-     // res.status(401).json("Fel inmatning försök igen!");
+    // Send Unauthorized error
+    // res.status(401).json("Fel inmatning försök igen!");
     //}
   } catch (error) {
     // Send Internal Server Error

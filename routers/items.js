@@ -4,6 +4,16 @@ const router = express.Router();
 // Include item modle and create an object of the modle
 const Item = require("../models/Item");
 
+// CREATE ITEM
+router.post("/", async (req, res) => {
+  try {
+    const newItem = await new Item(req.body);
+    const itemAdded = await newItem.save();
+    res.status(200).json(newItem);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 //  GET AN ITEM
 router.get("/:id", async (req, res) => {
@@ -19,16 +29,16 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//  GET ALL ITEMS
-router.get("/", async (req, res) => {
-  try {
-    // Get alla info about user but not password
-    const theItems = await Item.find();
-    res.status(200).json(theItems);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
+// //  GET ALL ITEMS
+// router.get("/", async (req, res) => {
+//   try {
+//     // Get alla info about user but not password
+//     const theItems = await Item.find();
+//     res.status(200).json(theItems);
+//   } catch (error) {
+//     res.status(500).json(error);
+//   }
+// });
 
 // UPDATE AN ITEM
 router.put("/:id", async (req, res) => {

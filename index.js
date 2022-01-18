@@ -63,10 +63,7 @@ app.use("/check", check);
 app.use("/admin", admin);
 app.use("/items", items);
 
-// App Index
-app.get("/", (req, res) => {
-  res.send("Boplats!!");
-});
+
 
 const PORT = process.env.PORT || 3001;
 

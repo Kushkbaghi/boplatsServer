@@ -7,7 +7,6 @@ const path = require("path");
 
 // INCLUDE ROUTERS
 const check = require("./routers/check");
-const admin = require("./routers/admin");
 const items = require("./routers/items");
 
 /**------------------------
@@ -60,7 +59,6 @@ app.post("/file", fileUploader.single("file"), (req, res) => {
 
 // USE ROUTERS
 app.use("/check", check);
-// // app.use("/admin", admin);
 app.use("/items", items);
 
 app.get("/",  (req, res) =>{

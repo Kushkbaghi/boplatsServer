@@ -71,6 +71,11 @@ app.use("/server/check", check);
 app.use("/server/admin", admin);
 app.use("/server/items", items);
 
+// App Index
+app.get('/index', (req, res)=>{
+  res.send('Boplats!')
+})
+
 app.listen(process.env.PORT || "3000", () => {
   console.log("Back end körs!");
 });

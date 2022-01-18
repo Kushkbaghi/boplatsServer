@@ -63,7 +63,9 @@ app.use("/check", check);
 // app.use("/admin", admin);
 app.use("/items", items);
 
-
+app.get("/", function (req, res) {
+  res.send("hej");
+});
 
 const PORT = process.env.PORT || 3001;
 
@@ -75,5 +77,3 @@ mongoose
   })
   .then(() => app.listen(PORT, () => console.log(`Server kör i ${PORT}`)))
   .catch((err) => console.log(err));
-
-  

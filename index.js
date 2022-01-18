@@ -63,7 +63,7 @@ app.use("/check", check);
 // // app.use("/admin", admin);
 app.use("/items", items);
 
-app.get("/", function (req, res) {
+app.get("/",  (req, res) {
   res.send("hej");
 });
 

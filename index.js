@@ -72,7 +72,7 @@ app.use("/server/admin", admin);
 app.use("/server/items", items);
 
 // App Index
-app.get('/index', (req, res)=>{
+app.get('/', (req, res)=>{
   res.send('Boplats!')
 })
 

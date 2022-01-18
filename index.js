@@ -59,9 +59,9 @@ app.post("/file", fileUploader.single("file"), (req, res) => {
 });
 
 // USE ROUTERS
-// app.use("/check", check);
+app.use("/check", check);
 // // app.use("/admin", admin);
-// app.use("/items", items);
+app.use("/items", items);
 
 app.get("/", function (req, res) {
   res.send("hej");
